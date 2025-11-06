@@ -8,31 +8,33 @@ from openpyxl.styles import PatternFill
 warnings.filterwarnings("ignore")
 
 # ----------------------------------------------------
-# Streamlit Page Setup
+# 🏦 Streamlit Page Setup
 # ----------------------------------------------------
 st.set_page_config(page_title="Bank Reconciliation System", page_icon="🏦", layout="wide")
 
 # ----------------------------------------------------
-# 🌊 Deep Navy & Aqua Accent Theme
+# 🎨 Final Professional Styling (Navy + Bright Blue Buttons)
 # ----------------------------------------------------
 st.markdown("""
 <style>
+
+/* 🔵 Global Background & Font */
 html, body, .stApp {
     background-color:#f8fafc;
     font-family:"Segoe UI",sans-serif;
     color:#1e293b;
 }
 
-/* Header */
+/* 🏦 Header (Dark Navy Theme) */
 .app-header {
-    background:linear-gradient(90deg,#06b6d4,#0891b2);
+    background:linear-gradient(90deg,#0f172a,#1e293b);
     padding:26px;border-radius:14px;text-align:center;
     box-shadow:0 3px 10px rgba(0,0,0,0.1);
 }
 .app-header h2 {color:#ffffff;margin:0;font-weight:600;}
 .app-header p {color:#e0f7fa;margin-top:6px;font-size:15px;}
 
-/* Sidebar – deep navy gradient */
+/* 🧭 Sidebar (Keep Navy Blue Background) */
 section[data-testid="stSidebar"] {
     background:linear-gradient(180deg,#0f172a 0%,#1e293b 100%);
     box-shadow:2px 0 8px rgba(0,0,0,0.25);
@@ -40,42 +42,59 @@ section[data-testid="stSidebar"] {
 section[data-testid="stSidebar"] h1,
 section[data-testid="stSidebar"] h2,
 section[data-testid="stSidebar"] label,
-section[data-testid="stSidebar"] p {color:#f8fafc !important;}
-section[data-testid="stSidebar"] .stMarkdown {color:#f1f5f9 !important;}
+section[data-testid="stSidebar"] p {
+    color:#f8fafc !important;
+}
 
-/* File uploaders */
+/* 📂 File Upload Box */
 [data-testid="stFileUploader"] {
     background-color:#ffffff;
-    border:2px dashed #06b6d4;
+    border:2px dashed #0f172a;
     border-radius:10px;
     padding:16px;
     box-shadow:0 1px 5px rgba(0,0,0,0.1);
 }
 
-/* Buttons */
+/* 📁 Browse Files Button (Bright Blue) */
+[data-testid="stFileUploader"] section div div button {
+    background:linear-gradient(90deg,#0ea5e9,#38bdf8) !important;
+    color:white !important;
+    font-weight:600 !important;
+    border:none !important;
+    border-radius:6px !important;
+    padding:8px 16px !important;
+    font-size:14px !important;
+    transition:all .3s ease !important;
+}
+[data-testid="stFileUploader"] section div div button:hover {
+    background:linear-gradient(90deg,#0284c7,#0ea5e9) !important;
+    transform:translateY(-2px);
+}
+
+/* 🖱 Submit / Download Buttons (Same Bright Blue) */
 div.stButton > button, .stDownloadButton>button {
-    background:linear-gradient(90deg,#06b6d4,#0891b2);
+    background:linear-gradient(90deg,#0ea5e9,#38bdf8);
     color:white;font-weight:600;border:none;
     border-radius:8px;padding:10px 22px;
     transition:all .3s ease;font-size:15px;
 }
 div.stButton > button:hover, .stDownloadButton>button:hover {
-    background:linear-gradient(90deg,#0e7490,#06b6d4);
+    background:linear-gradient(90deg,#0284c7,#0ea5e9);
     transform:translateY(-2px);
 }
 
-/* Metrics */
-[data-testid="stMetricValue"] {color:#0891b2 !important;font-weight:700;}
+/* 📊 Metric Styling */
+[data-testid="stMetricValue"] {color:#0ea5e9 !important;font-weight:700;}
 [data-testid="stMetricLabel"] {color:#475569 !important;}
 
-/* Info & Success boxes */
+/* ✅ Info Boxes */
 .stInfo, .stSuccess {
     border:none;border-radius:8px;padding:12px 15px;
 }
 .stInfo {background:#e0f2f1;color:#004d40;}
 .stSuccess {background:#d1fae5;color:#065f46;}
 
-/* DataFrame */
+/* 📘 DataFrame */
 .stDataFrame {
     border:1px solid #e2e8f0;
     border-radius:10px;
@@ -83,7 +102,7 @@ div.stButton > button:hover, .stDownloadButton>button:hover {
     box-shadow:0 1px 6px rgba(0,0,0,0.06);
 }
 
-/* Legend */
+/* 🧾 Legend Box */
 .legend-box {
     background:#e0f2f1;
     padding:10px 15px;
@@ -92,6 +111,7 @@ div.stButton > button:hover, .stDownloadButton>button:hover {
     color:#134e4a;
     font-size:14px;
 }
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -131,11 +151,11 @@ if bank_file:
 # ----------------------------------------------------
 # Account Type
 # ----------------------------------------------------
-st.markdown("### 🏦 Select Account Type")
+st.markdown("### 🏛️ Select Account Type")
 acct_type=st.selectbox("Account Type",["G/L Account","BRS Account"],index=1)
 
 # ----------------------------------------------------
-# Processor Class
+# Processor Class (Main Logic)
 # ----------------------------------------------------
 class Processor:
     def __init__(self,b,s,f,a):
@@ -212,7 +232,7 @@ class Processor:
         return out
 
 # ----------------------------------------------------
-# Processing Section
+# 🚀 Processing Section
 # ----------------------------------------------------
 st.markdown("### 🚀 Process Files")
 
